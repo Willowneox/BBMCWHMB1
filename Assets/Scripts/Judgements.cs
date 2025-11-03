@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 /// <summary>
 /// An enum representing the different possible judgements.
@@ -29,13 +30,16 @@ class Judgements
         // If hit time is within perfect range
         if (hitTime > -perfectTime && hitTime < perfectTime)
         {
+            Debug.Log("Perfect");
             return Judgement.Perfect;
         }
         // If hit time is within good range
         if (hitTime > -goodTime && hitTime < goodTime)
         {
+            Debug.Log("Good");
             return Judgement.Good;
         }
+        Debug.Log("Miss");
         return Judgement.Miss;
     }
 }
