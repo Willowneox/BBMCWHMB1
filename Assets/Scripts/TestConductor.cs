@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TestConductor : MonoBehaviour
 {
+    public AudioSource metronome;
+
     public Conductor conductor;
     private int nextBeat = 0;
     private bool trigger = true;
@@ -18,6 +20,9 @@ public class TestConductor : MonoBehaviour
 
     void Visual()
     {
+        //Plays the metronome sound, comment out if you no longer need it for testing.
+        metronome.Play();
+
         GetComponent<SpriteRenderer>().color = trigger ? Color.blue : Color.gold;
         trigger = !trigger;
     }

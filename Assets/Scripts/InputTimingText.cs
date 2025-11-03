@@ -3,6 +3,10 @@ using UnityEngine.UI;
 
 public class InputTimingText : MonoBehaviour
 {
+    //Average Offset Variables
+    public double totalOffset;
+    public double beatsHit;
+
 
     /// <summary>
     /// The text component that belongs to the "InputTimingText" node in the editor.
@@ -36,7 +40,7 @@ public class InputTimingText : MonoBehaviour
 
             double hitTime = GetHitTime();
             Judgement judgement = Judgements.GetRating(hitTime);
-            text.text = defaultText + hitTime + " ms. " + judgement;
+            text.text = defaultText + hitTime + " ms. " + judgement + "\nAverage Offset: " + totalOffset/beatsHit;
         }
     }
 
@@ -55,6 +59,10 @@ public class InputTimingText : MonoBehaviour
         }
         // Then convert seconds to milliseconds.
         hitTime *= 1000.0;
+
+        //Tallies beat hit and then adds offset to the total offset
+        beatsHit += 1;
+        totalOffset += hitTime;
         return hitTime;
     }
 }
