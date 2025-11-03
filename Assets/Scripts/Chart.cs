@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 
 public class ChartCreator
@@ -21,10 +22,10 @@ public class ChartCreator
     {   List<float> hitTimes = new List<float>();
         // Find the distance to every note
         foreach (float beatTime in timeChart) {
-            hitTimes.Add(Math.Abs(conductor.songPosition - beatTime))
+            hitTimes.Add(Math.Abs(conductor.songPosition - beatTime));
         }
         // Find the distance to the closest note
-        double hitTime = Minimum(hitTimes)
+        double hitTime = hitTimes.Min();
         // Convert seconds to milliseconds.
         hitTime *= 1000.0;
         return hitTime;
