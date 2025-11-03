@@ -35,7 +35,7 @@ public class InputTimingText : MonoBehaviour
     void Update()
     {
         // TODO: Allow the user to change controls
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.X))
         {
 
             double hitTime = GetHitTime();
