@@ -13,7 +13,7 @@ public class Conductor : MonoBehaviour
     public float songPositionInBeats; // Beats since song started
     public float songStartTimeDSP; // Time that song started (using DSP time)
     
-
+    //This goes before start, this makes sure that quarterNote will be ready before any other start function in other scripts.
     void Awake()
     {
         quarterNote = 60 / bpm;
