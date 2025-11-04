@@ -23,7 +23,7 @@ public class TestConductor : MonoBehaviour
         //Plays the metronome sound, comment out if you no longer need it for testing.
         metronome.Play();
 
-        GetComponent<SpriteRenderer>().color = trigger ? Color.blue : Color.gold;
-        trigger = !trigger;
+        //GetComponent<SpriteRenderer>().color = trigger ? Color.blue : Color.gold;
+        //trigger = !trigger;
     }
 }

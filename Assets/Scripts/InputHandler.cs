@@ -4,17 +4,19 @@ using System.Linq;
 
 public class InputHandler : MonoBehaviour
 {
+    
     public Conductor conductor;
 
-    public List<double> noteBeats = new List<double> { 2.0, 4.0, 6.0, 8.0, 10.0 };
+    public List<double> noteBeats = new List<double> { 1.0, 3.0, 5.0, 7.0, 9.0, 11.0 };
     public List<double> noteTimes = new List<double> {};
     private int nextNoteIndex = 0;
 
+    
     void Start()
     {
         noteTimes = noteBeats.Select(noteBeats => noteBeats * conductor.quarterNote).ToList();
     }
-
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.X))
@@ -24,7 +26,7 @@ public class InputHandler : MonoBehaviour
         }
             
     }
-
+    
     void CheckHit(double hitTime)
     {
         if (nextNoteIndex >= noteTimes.Count) return;
@@ -35,4 +37,5 @@ public class InputHandler : MonoBehaviour
         Judgement judgement = Judgements.GetRating(offsetMs);
         nextNoteIndex++;
     }
+    
 }

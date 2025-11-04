@@ -840,7 +840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Conductor
   song: {fileID: 1712172664}
-  bpm: 120
+  bpm: 88
   offset: 0
   quarterNote: 0
   songPosition: 0
@@ -872,8 +872,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 251e4974736236d4fabbd4ca3fa950de, type: 3}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: 27d11bd4a7c73fe489e6c6b6c04401f1, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

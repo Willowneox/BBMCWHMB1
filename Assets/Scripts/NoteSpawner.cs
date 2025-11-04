@@ -7,7 +7,7 @@ public class NoteSpawner : MonoBehaviour
     public Conductor conductor;
     public GameObject notePrefab;
 
-    public List<double> noteBeats = new List<double> { 2.0, 4.0, 6.0, 8.0, 10.0 };
+    public List<double> noteBeats = new List<double> { 1.0, 3.0, 5.0, 7.0, 9.0, 11.0 };
     private List<double> noteTimes = new List<double> { };
     private int nextNoteIndex = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
