@@ -7,7 +7,7 @@ public class InputHandler : MonoBehaviour
     public Conductor conductor;
 
     public List<double> noteBeats = new List<double> { 2.0, 4.0, 6.0, 8.0, 10.0 };
-    private List<double> noteTimes = new List<double> {};
+    public List<double> noteTimes = new List<double> {};
     private int nextNoteIndex = 0;
 
     void Start()

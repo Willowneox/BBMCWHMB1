@@ -6,6 +6,7 @@ public class NoteSpawner : MonoBehaviour
 {
     public Conductor conductor;
     public GameObject notePrefab;
+
     public List<double> noteBeats = new List<double> { 2.0, 4.0, 6.0, 8.0, 10.0 };
     private List<double> noteTimes = new List<double> { };
     private int nextNoteIndex = 0;
@@ -20,8 +21,13 @@ public class NoteSpawner : MonoBehaviour
     {
         if(nextNoteIndex < noteTimes.Count && conductor.songPosition >= noteTimes[nextNoteIndex])
         {
-            Instantiate(notePrefab, new Vector3(0,0,0), Quaternion.identity);
+            SpawnNote();
             nextNoteIndex++;
         }
+    }
+
+    void SpawnNote()
+    {
+        Instantiate(notePrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 }

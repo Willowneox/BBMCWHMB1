@@ -14,10 +14,15 @@ public class Conductor : MonoBehaviour
     public float songStartTimeDSP; // Time that song started (using DSP time)
     
 
+    void Awake()
+    {
+        quarterNote = 60 / bpm;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        quarterNote = 60 / bpm;
+        
         song.Play();
         songStartTimeDSP = (float)AudioSettings.dspTime;
     }
@@ -28,4 +33,5 @@ public class Conductor : MonoBehaviour
         songPosition = (float)(AudioSettings.dspTime -  songStartTimeDSP) * song.pitch - offset;
         songPositionInBeats = songPosition / quarterNote;
     }
+
 }
