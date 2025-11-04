@@ -5,7 +5,7 @@ public class Conductor : MonoBehaviour
     // Public Instance Variables
     public AudioSource song;
 
-    public float bpm = 120;
+    public float bpm;
     public float offset = 0;
 
     public float quarterNote; // Time duration of a single quarter note / beat
