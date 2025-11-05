@@ -1,14 +1,14 @@
 using UnityEngine;
 
 /// <summary>
-///  A class used to scroll a camera up and wrap at a certain value.
+///  A class used to scroll an image down and wrap at a certain value.
 /// </summary>
-public class CameraScroller : MonoBehaviour
+public class ImageScroller : MonoBehaviour
 {
     /// <summary>
     /// The camera that this script moves.
     /// </summary>
-    public Transform cameraTransform;
+    public Transform imageTransform;
     /// <summary>
     /// The speed that the camera should move at.
     /// </summary>
@@ -21,11 +21,11 @@ public class CameraScroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float cameraY = cameraTransform.position.y;
+        float y = imageTransform.position.y;
         // Move the camera up.
-        cameraY += Time.deltaTime * speed;
+        y -= Time.deltaTime * speed;
         // Wrap the camera's y value around to 0 when it reaches the limit.
-        cameraY %= wrapAtY;
-        cameraTransform.position = new Vector3(cameraTransform.position.x, cameraY, cameraTransform.position.z);
+        y %= wrapAtY;
+        imageTransform.position = new Vector3(imageTransform.position.x, y, imageTransform.position.z);
     }
 }
