@@ -6,9 +6,9 @@ using UnityEngine;
 public class ImageScroller : MonoBehaviour
 {
     /// <summary>
-    /// The camera that this script moves.
+    /// The conductor to get the song position from.
     /// </summary>
-    public Transform imageTransform;
+    public Conductor conductor;
     /// <summary>
     /// The speed that the camera should move at.
     /// </summary>
@@ -21,11 +21,11 @@ public class ImageScroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float y = imageTransform.position.y;
-        // Move the camera up.
-        y -= Time.deltaTime * speed;
+        float y = this.transform.position.y;
+        // Move the street down to the music.
+        y = -conductor.songPositionInBeats * speed;
         // Wrap the camera's y value around to 0 when it reaches the limit.
         y %= wrapAtY;
-        imageTransform.position = new Vector3(imageTransform.position.x, y, imageTransform.position.z);
+        this.transform.position = new Vector3(this.transform.position.x, y, this.transform.position.z);
     }
 }
