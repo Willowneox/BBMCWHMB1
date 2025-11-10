@@ -31,7 +31,6 @@ public class House : MonoBehaviour
             Destroy(this.gameObject);
         } else
         {
-            print(difference);
             float y = this.transform.position.y;
             // Move the houses down to the music.
             y = difference * distanceScale;

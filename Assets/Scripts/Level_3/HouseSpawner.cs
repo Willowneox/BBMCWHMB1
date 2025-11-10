@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using NUnit.Framework.Constraints;
 using UnityEngine;
 
@@ -20,17 +21,19 @@ public class HouseSpawner : MonoBehaviour
     /// <summary>
     /// A queue of house times and whether they go on the left or right side of the level.
     /// </summary>
-    private readonly Queue<Tuple<float, bool>> noteQueue = new();
+    private readonly Queue<(float, bool)> noteQueue = new();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Todo: Replace with ChartCreator method "FileToBeatChart" when it's ready
-        List<float> noteTimeList = new() { 1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f };
-        // Todo: Call "BeatsToTimes" when it's ready
-        foreach (float noteTime in noteTimeList)
+        // Get the path of the level 3 chart file
+        string fullPath = Path.Combine(Application.dataPath, "Charts", "Level_3.txt");
+
+        List<(float, bool)> beatList = DeliveryFoodGameChart.FileToBeatChart(fullPath);
+
+        foreach ((float beatTime, bool direction) in beatList)
         {
-            noteQueue.Enqueue(Tuple.Create(noteTime, ((int)noteTime) % 2 == 0));
+            noteQueue.Enqueue((beatTime, direction));
         }
     }
 
@@ -40,16 +43,16 @@ public class HouseSpawner : MonoBehaviour
         if (noteQueue.Count != 0)
         {
             // We use peek here because we may not want to take it out of the queue yet.
-            Tuple<float, bool> nextNote = noteQueue.Peek();
+            (float nextBeatTime, bool nextDirection) = noteQueue.Peek();
             // Check if the note time is close enough for the house to spawn.
-            if (conductor.songPositionInBeats > nextNote.Item1 - 2f)
+            if (conductor.songPositionInBeats > nextBeatTime - 2f)
             {
                 // Now we take it out of the queue.
-                nextNote = noteQueue.Dequeue();
+                (nextBeatTime, nextDirection) = noteQueue.Dequeue();
                 // Instantiate the house and set its variables.
                 House house = Instantiate(housePrefab);
                 float houseX;
-                if (nextNote.Item2)
+                if (nextDirection)
                 {
                     houseX = -5.5f;
                 }
@@ -57,9 +60,9 @@ public class HouseSpawner : MonoBehaviour
                 {
                     houseX = 5.5f;
                 }
-                house.spriteRenderer.flipX = nextNote.Item2;
+                house.spriteRenderer.flipX = nextDirection;
                 house.transform.position = new Vector3(houseX, this.transform.position.y, 0f);
-                house.noteTime = nextNote.Item1;
+                house.noteTime = nextBeatTime;
                 house.conductor = conductor;
                 house.distanceScale = imageScroller.speed;
             }
