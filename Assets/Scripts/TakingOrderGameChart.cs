@@ -4,18 +4,18 @@ using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
 
-public class ChartCreator
+public static class TakingOrderGameChart
 {	
-	private List<float> beatChart; // List of the target beats as beat numbers
-    private List<float> timeChart; // List of the target beats as times in sec
-	private Conductor conductor;
-	
+	// List<float> beatChart;  List of the target beats as beat numbers
+    // List<float> timeChart;  List of the target beats as times in sec
+
     /// <summary>
     /// Returns a list of the time of target beats based on the beat numbers
     /// </summary>
     /// <param name="beatChart"></param>
+    /// <param name="conductor"></param>
     /// <returns></returns>
-	List<float> BeatsToTimes(List<float> beatChart)
+	static List<float> BeatsToTimes(List<float> beatChart, Conductor conductor)
     {
         List<float> timeChart = new List<float>();
         foreach (float beat in beatChart)
@@ -30,7 +30,7 @@ public class ChartCreator
     /// </summary>
     /// <param name="path"></param>
     /// <returns></returns>
-    List<float> FileToBeatChart(string path)
+    static List<float> FileToBeatChart(string path)
     {
         StreamReader streamReader = new StreamReader(path);
         List<float> beatChart = new List<float>();
@@ -49,8 +49,9 @@ public class ChartCreator
     /// Gets the time to the nearest note in the time chart based on the song position
     /// </summary>
     /// <param name="timeChart"></param>
+    /// <param name="conductor"></param>
     /// <returns></returns>
-    double GetHitTime(List<float> timeChart)
+    static double GetHitTime(List<float> timeChart, Conductor conductor)
     {   List<float> hitTimes = new List<float>();
         // Find the distance to every note
         foreach (float beatTime in timeChart) {
