@@ -38,28 +38,4 @@ public static class DeliveryFoodGameChart
         }
         return beatChart;
     }
-
-    /// <summary>
-    /// Gets the time to the nearest note in the time chart based on the song position
-    /// The direction should be either "L" for left or "R" for right
-    /// </summary>
-    /// <param name="timeChart"></param>
-    /// <param name="conductor"></param>
-    /// <param name="direction"></param>
-    /// <returns></returns>
-    // public static double GetHitTime(List<(float, string)> timeChart, Conductor conductor, string direction)
-    // {
-    //     List<float> hitTimes = new List<float>();
-    //     // Find the distance to every note
-    //     foreach ((float beat, string beatDirection) in timeChart)
-    //     {
-    //         if (beatDirection == direction)
-    //             hitTimes.Add(Math.Abs(conductor.songPosition - beat));
-    //     }
-    //     // Find the distance to the closest note
-    //     double hitTime = hitTimes.Min();
-    //     // Convert seconds to milliseconds.
-    //     hitTime *= 1000.0;
-    //     return hitTime;
-    // }
 }
