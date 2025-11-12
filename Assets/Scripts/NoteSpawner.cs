@@ -6,24 +6,19 @@ public class NoteSpawner : MonoBehaviour
 {
     public Conductor conductor;
     public GameObject notePrefab;
-    public Transform[] pathPositions;
 
-    //This is ripped from InputHandler for hard coded notes
+    //Hardcoded notes
     public List<double> noteBeats = new List<double> { 1.0, 3.0, 5.0, 7.0, 9.0, 11.0 };
-    private List<double> noteTimes = new List<double> { };
     private int nextNoteIndex = 0;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        noteTimes = noteBeats.Select(noteBeats => noteBeats * conductor.quarterNote).ToList();
-    }
 
     // Update is called once per frame
     void Update()
     {
+        if(conductor.songPositionInBeats < 0) return;
+
         //Basically spawns a note at the hard coded note time.
-        if(nextNoteIndex < noteTimes.Count && conductor.songPosition >= noteTimes[nextNoteIndex])
+        while(nextNoteIndex < noteBeats.Count && conductor.songPositionInBeats + 4f >= noteBeats[nextNoteIndex])
         {
             SpawnNote((float)noteBeats[nextNoteIndex]);
             nextNoteIndex++;
@@ -31,12 +26,11 @@ public class NoteSpawner : MonoBehaviour
     }
 
     //The thing that actually spawns the note.
-    void SpawnNote(float spawnBeat)
+    void SpawnNote(float hitBeat)
     {
-        GameObject noteObj = Instantiate(notePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject noteObj = Instantiate(notePrefab, transform.position, Quaternion.identity);
         Note note = noteObj.GetComponent<Note>();
-        note.spawnBeat = spawnBeat;
-        note.hitBeat = spawnBeat + 4f;
-        note.beatPositions = pathPositions;
+        note.hitBeat = hitBeat;
+        
     }
 }
