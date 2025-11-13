@@ -2,57 +2,40 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
-    public float hitBeat;
+    public float spawnBeat; //This is when the note spawns
+    public float hitBeat; //This is when the note should be hit
+    public Vector3 spawnPosition;
+    public Vector3 hitPosition;
+
     public bool wasHit = false;
     public bool wasMissed = false;
 
     private Conductor conductor;
-    private int currentStep = 0;
-
-    public Transform[] beatPositions;
-    public int totalSteps = 4;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         conductor = FindObjectOfType<Conductor>();
-
-        if(beatPositions != null && beatPositions.Length > 0)
-        {
-            currentStep = 0;
-            transform.position = beatPositions[0].position; 
-        }
+        transform.position = spawnPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(wasHit || wasMissed) return;
-        
-        //Mises if player doesn't hit the note in time
-        if(conductor.songPositionInBeats > hitBeat + 0.25f)
+
+        float currentBeat = conductor.songPositionInBeats;
+
+        if (currentBeat < spawnBeat) return;
+
+        float t = Mathf.InverseLerp(spawnBeat, hitBeat, currentBeat);
+
+        transform.position = Vector3.Lerp(spawnPosition, hitPosition, t);
+
+        if(currentBeat > hitBeat + 0.25f)
         {
             Miss();
-            return;
         }
-        
-        //Moves the note to the beat
-        if(beatPositions != null && beatPositions.Length > 1)
-        {
-            float beatsUntilHit = hitBeat - conductor.songPositionInBeats;
-            float totalBeatsTravel = beatPositions.Length - 1;
-
-            //See how many steps that have been moved
-            int step = Mathf.Clamp(Mathf.FloorToInt(totalBeatsTravel - beatsUntilHit), 0, beatPositions.Length - 1);
-
-            if (step != currentStep)
-            {
-                currentStep = currentStep;
-                transform.position = beatPositions[currentStep].position;
-            }
-        }
-
-
     }
 
     public void Hit()
