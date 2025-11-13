@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f53644fc537a4a1ed99856bde734e06f
+guid: 5046992c7c8207f5cb7c07a6f3a768ab
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6730420872902114170
-    second: Motorcycle_Cat_0
+      213: -6464848286313991190
+    second: Rhythm_Street_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Motorcycle_Cat_0
+      name: Rhythm_Street_0
       rect:
         serializedVersion: 2
-        x: 236
-        y: 51
-        width: 513
-        height: 876
+        x: 474
+        y: 0
+        width: 973
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6848bc910edb892a0800000000000000
-      internalID: -6730420872902114170
+      spriteID: ae3367f5cbe3846a0800000000000000
+      internalID: -6464848286313991190
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Motorcycle_Cat_0: -6730420872902114170
+      Rhythm_Street_0: -6464848286313991190
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
