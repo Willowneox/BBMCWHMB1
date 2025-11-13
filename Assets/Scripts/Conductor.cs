@@ -11,9 +11,10 @@ public class Conductor : MonoBehaviour
     public float quarterNote; // Time duration of a single quarter note / beat
     public float songPosition; // Seconds since song started
     public float songPositionInBeats; // Beats since song started
-    public float songStartTimeDSP; // Time that song started (using DSP time)
 
-    private double scheduledStartTime;
+    public float songStartTimeDSP; // Time that song started (using DSP time)
+    private double scheduledStartTime; //Time when the song is scheduled to start
+    private float leadInBeats = 4f; // Beats before song starts to allow for notes to spawn in
 
     //This goes before start, this makes sure that quarterNote will be ready before any other start function in other scripts.
     void Awake()
@@ -24,11 +25,11 @@ public class Conductor : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        scheduledStartTime = AudioSettings.dspTime + 1.0f; // Schedule the song to start in 1 second
+        double leadInSeconds  = leadInBeats * quarterNote;
+        scheduledStartTime = AudioSettings.dspTime + leadInSeconds; // Schedule the song to start in 1 second
         song.PlayScheduled(scheduledStartTime);
 
-        song.Play();
-        songStartTimeDSP = (float)AudioSettings.dspTime;
+        songStartTimeDSP = (float)scheduledStartTime;
     }
 
     // Update is called once per frame
