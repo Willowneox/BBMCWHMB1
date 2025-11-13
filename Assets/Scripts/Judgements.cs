@@ -11,7 +11,7 @@ public enum Judgement
     Perfect
 }
     
-class Judgements
+public class Judgements
 {
     // Timings were decided by Kai.
     /// Time required for a good in milliseconds
