@@ -11,7 +11,7 @@ public enum Judgement
     Perfect
 }
     
-class Judgements
+public class Judgements
 {
     // Timings were decided by Kai.
     /// Time required for a good in milliseconds
@@ -30,16 +30,13 @@ class Judgements
         // If hit time is within perfect range
         if (hitTime > -perfectTime && hitTime < perfectTime)
         {
-            Debug.Log("Perfect");
             return Judgement.Perfect;
         }
         // If hit time is within good range
         if (hitTime > -goodTime && hitTime < goodTime)
         {
-            Debug.Log("Good");
             return Judgement.Good;
         }
-        Debug.Log("Miss");
         return Judgement.Miss;
     }
 }
