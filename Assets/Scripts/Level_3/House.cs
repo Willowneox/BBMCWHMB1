@@ -23,9 +23,9 @@ public class House : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /// The difference (in seconds) between the note time of this house and the actual song position.
+        /// The difference (in beats) between the note time of this house and the actual song position.
         float difference = noteTime - conductor.songPositionInBeats;
-        // If 2 seconds have passed since this note was supposed to be hit, we can despawn the house.
+        // If 2 beats have passed since this note was supposed to be hit, we can despawn the house.
         if (difference < -2f)
         {
             Destroy(this.gameObject);

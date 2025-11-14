@@ -10,7 +10,7 @@ public class Motorcycle_Cat : MonoBehaviour
     
     void Update()
     {
-        double y = Math.Sin(Math.PI * 2.0 * conductor.songPositionInBeats) / 20.0;
+        double y = -Math.Sin(Math.PI * 2.0 * conductor.songPositionInBeats) / 20.0;
         this.transform.position = new Vector3(this.transform.position.x, (float) y, this.transform.position.z);
     }
 }
