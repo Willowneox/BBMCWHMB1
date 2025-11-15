@@ -15,6 +15,10 @@ public class HouseSpawner : MonoBehaviour
     /// </summary>
     public ImageScroller imageScroller;
     /// <summary>
+    /// The audio component connected to this game object.
+    /// </summary>
+    public AudioSource doorSound;
+    /// <summary>
     /// The conductor used to get the song position.
     /// </summary>
     public Conductor conductor;
@@ -65,10 +69,14 @@ public class HouseSpawner : MonoBehaviour
                 {
                     houseX = houseLeftXPos;
                     house.spriteRenderer.flipX = true;
+                    // Make the door sound play on the left.
+                    doorSound.panStereo = -1f;
                 }
                 else
                 {
                     houseX = houseRightXPos;
+                    // Make the door sound play on the right.
+                    doorSound.panStereo = 1f;
                 }
                 house.transform.position = new Vector3(houseX, this.transform.position.y, 0f);
 
@@ -79,6 +87,8 @@ public class HouseSpawner : MonoBehaviour
                 house.noteTime = nextBeatTime;
                 house.conductor = conductor;
                 house.distanceScale = imageScroller.speed;
+                // Play the door opening sound.
+                doorSound.Play();
             }
         }
     }
