@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using System;
 using Level3;
+using UnityEngine.UI;
 
 public class Level3InputHandler : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class Level3InputHandler : MonoBehaviour
     /// The image scroller to get the speed of house movement.
     /// </summary>
     public ImageScroller imageScroller;
+
+    /// <summary>
+    /// The UI text to display the most recent hit data.
+    /// </summary>
+    public Text judgementText;
 
     /// <summary>
     /// List of note times in seconds and their directions. Left = true and right = false.
@@ -66,6 +72,15 @@ public class Level3InputHandler : MonoBehaviour
             SpawnBurger(closestNote, hitDirection);
         }
         Debug.Log(judgement);
+        // Display the judgement onscreen
+        judgementText.text = judgement + "!\n" + (int) Math.Abs(hitOffset) + " ms";
+        if (hitOffset < 0)
+        {
+            judgementText.text += " early.";
+        } else if (hitOffset > 0)
+        {
+            judgementText.text += " late.";
+        }
     }
     
     /// <summary>
