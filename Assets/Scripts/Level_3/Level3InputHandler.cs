@@ -31,6 +31,11 @@ public class Level3InputHandler : MonoBehaviour
     /// </summary>
     private List<(float, Direction)> beatList;
 
+    /// <summary>
+    /// Dictionary that stores a tally of each judgement
+    /// </summary>
+    public Dictionary<Judgement, int> ScoreTally;
+
     // private StreamWriter chartMaker;
     
     void Start()
@@ -72,6 +77,8 @@ public class Level3InputHandler : MonoBehaviour
             SpawnBurger(closestNote, hitDirection);
         }
         Debug.Log(judgement);
+        ScoreTally[judgement] += 1;
+
         // Display the judgement onscreen
         judgementText.text = judgement + "!\n" + (int) Math.Abs(hitOffset) + " ms";
         if (hitOffset < 0)

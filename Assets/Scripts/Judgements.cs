@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -38,5 +39,15 @@ public class Judgements
             return Judgement.Good;
         }
         return Judgement.Miss;
+    }
+    
+    /// <summary>
+    /// Calculates the score with the given tally
+    /// </summary>
+    /// <param name="tally"></param>
+    /// <returns></returns>
+    public static double CalculateScore(Dictionary<Judgement, int> tally)
+    {
+        return (-0.05 * tally[Judgement.Miss] + 0.75 * tally[Judgement.Good] + 1 * tally[Judgement.Perfect]) / (tally[Judgement.Miss] + tally[Judgement.Good] + tally[Judgement.Perfect]);
     }
 }
