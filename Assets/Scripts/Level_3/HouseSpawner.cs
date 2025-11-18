@@ -69,14 +69,16 @@ public class HouseSpawner : MonoBehaviour
                 {
                     houseX = houseLeftXPos;
                     house.spriteRenderer.flipX = true;
-                    // Make the door sound play on the left.
+                    // Make the door sound play on the left at a regular pitch.
                     doorSound.panStereo = -1f;
+                    doorSound.pitch = 2f;
                 }
                 else
                 {
                     houseX = houseRightXPos;
-                    // Make the door sound play on the right.
+                    // Make the door sound play on the right at a high pitch.
                     doorSound.panStereo = 1f;
+                    doorSound.pitch = 3f;
                 }
                 house.transform.position = new Vector3(houseX, this.transform.position.y, 0f);
 

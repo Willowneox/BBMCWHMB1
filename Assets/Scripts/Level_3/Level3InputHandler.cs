@@ -34,7 +34,7 @@ public class Level3InputHandler : MonoBehaviour
     /// <summary>
     /// Dictionary that stores a tally of each judgement
     /// </summary>
-    public Dictionary<Judgement, int> ScoreTally;
+    private readonly Dictionary<Judgement, int> scoreTally = new();
 
     // private StreamWriter chartMaker;
     
@@ -46,6 +46,11 @@ public class Level3InputHandler : MonoBehaviour
 
         // fullPath = Path.Combine(Application.dataPath, "Charts", "Level_3_Custom.txt");
         // chartMaker = new StreamWriter(fullPath);
+
+        // Initialize the dictionary
+        scoreTally.Add(Judgement.Miss, 0);
+        scoreTally.Add(Judgement.Good, 0);
+        scoreTally.Add(Judgement.Perfect, 0);
     }
 
     void Update()
@@ -77,7 +82,7 @@ public class Level3InputHandler : MonoBehaviour
             SpawnBurger(closestNote, hitDirection);
         }
         Debug.Log(judgement);
-        ScoreTally[judgement] += 1;
+        scoreTally[judgement] += 1;
 
         // Display the judgement onscreen
         judgementText.text = judgement + "!\n" + (int) Math.Abs(hitOffset) + " ms";
