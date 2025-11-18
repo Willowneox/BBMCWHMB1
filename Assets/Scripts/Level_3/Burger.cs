@@ -44,7 +44,7 @@ public class Burger : MonoBehaviour
             despawnX = HouseSpawner.houseRightXPos * 0.75f;
         }
         // The burger is ready to be visible, so we change the scale from 0.
-        this.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        this.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
     }
 
     // Update is called once per frame
