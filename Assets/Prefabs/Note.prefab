@@ -103,3 +103,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5cfcbcec22e904dba0f02838465500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Note
+  spawnBeat: 0
+  hitBeat: 0
+  beatPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  totalSteps: 4
