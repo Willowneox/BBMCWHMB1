@@ -1312,7 +1312,7 @@ GameObject:
   - component: {fileID: 1331687639}
   - component: {fileID: 1331687638}
   m_Layer: 0
-  m_Name: Scene Switcher
+  m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1327,9 +1327,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1331687637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb41f2d12ef9f013280b69d930375a66, type: 3}
+  m_Script: {fileID: 11500000, guid: da05b07cba0950c4dacc1aa8a17e5b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  _inGameText: {fileID: 0}
+  _pauseMenu: {fileID: 0}
 --- !u!4 &1331687639
 Transform:
   m_ObjectHideFlags: 0
@@ -1429,8 +1431,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1331687638}
-        m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
-        m_MethodName: load_level_3
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: OnLevelThreePress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
