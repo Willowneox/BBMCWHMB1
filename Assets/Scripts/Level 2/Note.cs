@@ -26,6 +26,10 @@ public class Note : MonoBehaviour
     public Sprite overcookedSprite;
     private SpriteRenderer sr;
 
+    //Removing the note from the screen
+    private bool slidingOff = false;
+    public float slideSpeed = 5f;
+
 
     [SerializeField] private float snapDuration = 0.1f;
     [SerializeField] private AnimationCurve snapEase = AnimationCurve.EaseInOut(0, 0, 1, 1);
@@ -48,6 +52,12 @@ public class Note : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (slidingOff)
+        {
+            transform.position += Vector3.left * slideSpeed * Time.deltaTime;
+            return;
+        }
+
         if (wasHit || wasMissed) return;
 
         float currentBeat = conductor.songPositionInBeats;
@@ -74,6 +84,8 @@ public class Note : MonoBehaviour
         {
             Miss();
         }
+
+
     }
 
     private IEnumerator SnapMove(Vector3 startpos, Vector3 endPos)
@@ -94,14 +106,14 @@ public class Note : MonoBehaviour
     {
         if (wasHit || wasMissed) return;
         wasHit = true;
-        gameObject.SetActive(false);
+
     }
 
     public void Miss()
     {
         if (wasHit || wasMissed) return;
         wasMissed = true;
-        gameObject.SetActive(false);
+
     }
 
     public void ApplyJudgement(Judgement result)
@@ -119,7 +131,14 @@ public class Note : MonoBehaviour
                 break;
         }
 
-        //Removes the object after its (hopefully) off the screen.
-        Destroy(gameObject, 1f);
+
+    }
+
+    public void SlideOffScreen()
+    {
+        slidingOff = true;
+
+        //Debug.Log("Starting slide off");
+        Destroy(gameObject, 2f);
     }
 }

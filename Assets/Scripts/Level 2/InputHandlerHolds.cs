@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class InputHandlerHolds : MonoBehaviour
 {
     public Conductor conductor;
-    public NoteSpawner spawner;
 
     //This should be the same list in NoteSpawner
     public List<HoldNoteData> notes;
@@ -71,11 +70,13 @@ public class InputHandlerHolds : MonoBehaviour
 
         float offsetBeats = currentBeat - activeNote.releaseBeat;
         double offsetMs = offsetBeats * conductor.quarterNote * 1000.0;
-
         Judgement result = Judgements.GetRating(offsetMs);
+
         Debug.Log($"Release: {result} ({offsetMs:F1} ms)");
 
+        //Changes the burger sprite and then has it slide off the screen and delete itself
         activeNote.noteObject.ApplyJudgement(result);
+        activeNote.noteObject.SlideOffScreen();
 
         isHeld = false;
         activeNote = null;

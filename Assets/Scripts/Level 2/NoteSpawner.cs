@@ -36,6 +36,7 @@ public class NoteSpawner : MonoBehaviour
     {
         GameObject go = Instantiate(notePrefab, spawnPoint.position, Quaternion.identity);
         Note note = go.GetComponent<Note>();
+        data.noteObject = note;
 
         //Assigning beats
         note.pressBeat = data.pressBeat;
