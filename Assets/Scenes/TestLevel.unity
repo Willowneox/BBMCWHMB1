@@ -333,59 +333,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1513562369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1351404623
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1351404625}
-  - component: {fileID: 1351404624}
-  m_Layer: 0
-  m_Name: InputHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1351404624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351404623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eadac32ea774d847b9fd0a97b35c9ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputHandler
-  conductor: {fileID: 1808707066}
-  noteBeats:
-  - 4
-  - 6
-  - 8
-  - 10
-  - 12
-  - 14
-  noteTimes: []
---- !u!4 &1351404625
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351404623}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01156, y: 0.03927, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1456695028
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,6 +510,68 @@ Transform:
   - {fileID: 798143387}
   - {fileID: 1235924669}
   - {fileID: 190037814}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1626034584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1626034586}
+  - component: {fileID: 1626034585}
+  m_Layer: 0
+  m_Name: InputHandlerHolds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1626034585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626034584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740142e498b070a41adfbd4096713184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputHandlerHolds
+  conductor: {fileID: 1808707066}
+  spawner: {fileID: 2112485014}
+  notes:
+  - pressBeat: 4
+    releaseBeat: 6
+    noteObject: {fileID: 0}
+  - pressBeat: 6
+    releaseBeat: 8
+    noteObject: {fileID: 0}
+  - pressBeat: 8
+    releaseBeat: 10
+    noteObject: {fileID: 0}
+  - pressBeat: 10
+    releaseBeat: 12
+    noteObject: {fileID: 0}
+  - pressBeat: 12
+    releaseBeat: 14
+    noteObject: {fileID: 0}
+--- !u!4 &1626034586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626034584}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.08966, y: 1.94323, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1808707064
@@ -971,16 +980,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoteSpawner
   conductor: {fileID: 1808707066}
-  notePrefab: {fileID: 4557104497976655815, guid: d8243883d6dd38940afe612eb41c19ff, type: 3}
+  inputHandler: {fileID: 1626034585}
+  notePrefab: {fileID: 1387389303626003304, guid: 59b4b95036a1a0d44917af2471135b91, type: 3}
   spawnPoint: {fileID: 1280227402}
   hitPoint: {fileID: 190037814}
-  noteBeats:
-  - 4
-  - 6
-  - 8
-  - 10
-  - 12
-  - 14
 --- !u!4 &2112485015
 Transform:
   m_ObjectHideFlags: 0
@@ -1002,8 +1005,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 2021612387}
   - {fileID: 1808707067}
-  - {fileID: 1351404625}
   - {fileID: 2112485015}
+  - {fileID: 1626034586}
   - {fileID: 1513562369}
   - {fileID: 1213228349}
   - {fileID: 2019792815}

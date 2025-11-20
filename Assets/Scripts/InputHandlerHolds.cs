@@ -4,16 +4,10 @@ using System.Collections.Generic;
 public class InputHandlerHolds : MonoBehaviour
 {
     public Conductor conductor;
+    public NoteSpawner spawner;
 
-    //Hard coded notes here
-    [System.Serializable]
-    public class HoldNoteData
-    {
-        public float pressBeat;
-        public float releaseBeat;
-    }
-
-    public List<HoldNoteData> notes = new List<HoldNoteData>();
+    //This should be the same list in NoteSpawner
+    public List<HoldNoteData> notes;
 
     private bool isHeld = false;
     private HoldNoteData activeNote = null;
@@ -42,6 +36,9 @@ public class InputHandlerHolds : MonoBehaviour
         float bestDist = float.MaxValue;
         foreach(var note in notes)
         {
+            if (currentBeat > note.releaseBeat + 0.6f) continue;
+
+
             float dist = Mathf.Abs(note.pressBeat - currentBeat);
 
             if(dist < bestDist)
@@ -78,7 +75,7 @@ public class InputHandlerHolds : MonoBehaviour
         Judgement result = Judgements.GetRating(offsetMs);
         Debug.Log($"Release: {result} ({offsetMs:F1} ms)");
 
-        notes.Remove(activeNote);
+        activeNote.noteObject.ApplyJudgement(result);
 
         isHeld = false;
         activeNote = null;

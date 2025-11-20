@@ -4,7 +4,9 @@ using System.Collections;
 public class Note : MonoBehaviour
 {
     public float spawnBeat; //This is when the note spawns
-    public float hitBeat; //This is when the note should be hit
+    public float hitBeat; //This is when the note should be hit (tap notes only)
+    public float pressBeat; //This is when the note should be hit
+    public float releaseBeat; //This is when the note should be released
     public Vector3 spawnPosition;
     public Vector3 hitPosition;
 
@@ -18,22 +20,35 @@ public class Note : MonoBehaviour
     private float stepLength;
     private Coroutine moveRoutine;
 
+    //Sprites
+    public Sprite rawSprite;
+    public Sprite perfectSprite;
+    public Sprite overcookedSprite;
+    private SpriteRenderer sr;
+
+
     [SerializeField] private float snapDuration = 0.1f;
     [SerializeField] private AnimationCurve snapEase = AnimationCurve.EaseInOut(0, 0, 1, 1);
+
+    void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+        sr.sprite = rawSprite;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         conductor = FindObjectOfType<Conductor>();
 
-        stepLength = (hitBeat - spawnBeat) / totalSteps;
+        stepLength = (pressBeat - spawnBeat) / totalSteps;
         transform.position = spawnPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(wasHit || wasMissed) return;
+        if (wasHit || wasMissed) return;
 
         float currentBeat = conductor.songPositionInBeats;
 
@@ -55,7 +70,7 @@ public class Note : MonoBehaviour
         }
 
         //Misses if note is ignored by player
-        if(currentBeat > hitBeat + 0.25f)
+        if (currentBeat > pressBeat + 0.25f)
         {
             Miss();
         }
@@ -64,7 +79,7 @@ public class Note : MonoBehaviour
     private IEnumerator SnapMove(Vector3 startpos, Vector3 endPos)
     {
         float elapsed = 0f;
-        while(elapsed < snapDuration)
+        while (elapsed < snapDuration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / snapDuration);
@@ -77,15 +92,34 @@ public class Note : MonoBehaviour
 
     public void Hit()
     {
-        if(wasHit || wasMissed) return;
+        if (wasHit || wasMissed) return;
         wasHit = true;
         gameObject.SetActive(false);
     }
 
     public void Miss()
     {
-        if(wasHit || wasMissed) return;
+        if (wasHit || wasMissed) return;
         wasMissed = true;
         gameObject.SetActive(false);
+    }
+
+    public void ApplyJudgement(Judgement result)
+    {
+        switch (result)
+        {
+            case Judgement.Perfect:
+            case Judgement.Good:
+                sr.sprite = perfectSprite;
+                break;
+
+            case Judgement.Miss:
+            default:
+                sr.sprite = overcookedSprite;
+                break;
+        }
+
+        //Removes the object after its (hopefully) off the screen.
+        Destroy(gameObject, 1f);
     }
 }

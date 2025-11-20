@@ -5,39 +5,48 @@ using System.Linq;
 public class NoteSpawner : MonoBehaviour
 {
     public Conductor conductor;
+
+    //Assign notes in the inspector in input handler
+    public InputHandlerHolds inputHandler;
+    
+    private int nextNoteIndex = 0;
+
     public GameObject notePrefab;
     public Transform spawnPoint;
     public Transform hitPoint;
 
-
-    //Hardcoded notes
-    public List<double> noteBeats = new List<double> { 1.0, 3.0, 5.0, 7.0, 9.0, 11.0 };
-    private int nextNoteIndex = 0;
-
-
     // Update is called once per frame
     void Update()
     {
-        if(conductor.songPositionInBeats < 0) return;
+        //Prevents spawning notes before the song starts
+        if (conductor.songPositionInBeats < 0) return;
+
+        var notes = inputHandler.notes;
 
         //Basically spawns a note at the hard coded note time.
-        while(nextNoteIndex < noteBeats.Count && conductor.songPositionInBeats + 4f >= noteBeats[nextNoteIndex])
+        while(nextNoteIndex < inputHandler.notes.Count && conductor.songPositionInBeats + 4f >= inputHandler.notes[nextNoteIndex].pressBeat)
         {
-            SpawnNote((float)noteBeats[nextNoteIndex]);
+            SpawnNote(inputHandler.notes[nextNoteIndex]);
             nextNoteIndex++;
         }
     }
 
     //The thing that actually spawns the note.
-    void SpawnNote(float hitBeat)
+    void SpawnNote(HoldNoteData data)
     {
-        GameObject noteObj = Instantiate(notePrefab, transform.position, Quaternion.identity);
-        Note note = noteObj.GetComponent<Note>();
+        GameObject go = Instantiate(notePrefab, spawnPoint.position, Quaternion.identity);
+        Note note = go.GetComponent<Note>();
+
+        //Assigning beats
+        note.pressBeat = data.pressBeat;
+        note.releaseBeat = data.releaseBeat;
 
         //Spawn note 4 beats before it needs to be hit
-        note.spawnBeat = hitBeat - 4f; 
-        note.hitBeat = hitBeat;
+        note.spawnBeat = data.pressBeat - 4f; 
         note.spawnPosition = spawnPoint.position;
         note.hitPosition = hitPoint.position;
+
+        //Link visual note to chart entry
+        data.noteObject = note;
     }
 }
