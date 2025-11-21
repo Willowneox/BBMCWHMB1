@@ -721,8 +721,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030518, y: 218.8363}
-  m_SizeDelta: {x: 699, y: 101.3274}
+  m_AnchoredPosition: {x: -4.2201e-10, y: 233.21085}
+  m_SizeDelta: {x: 699, y: 149.5858}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &655430839
 MonoBehaviour:
@@ -1024,7 +1024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ImageScroller
   conductor: {fileID: 102154895}
-  speed: 5
+  speed: 4
   wrapAtY: -11
 --- !u!1 &919497791
 GameObject:

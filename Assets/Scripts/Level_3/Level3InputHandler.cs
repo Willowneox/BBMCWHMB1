@@ -41,10 +41,10 @@ public class Level3InputHandler : MonoBehaviour
     void Start()
     {
         // Get the path of the level 3 chart file
-        string fullPath = Path.Combine(Application.dataPath, "Charts", "Level_3.txt");
+        string fullPath = Path.Combine(Application.streamingAssetsPath, "Charts", "Level_3.txt");
         beatList = DeliveryFoodGameChart.FileToBeatChart(fullPath).Select((tuple, index) => (tuple.Item1 * conductor.quarterNote, tuple.Item2)).ToList();
 
-        // fullPath = Path.Combine(Application.dataPath, "Charts", "Level_3_Custom.txt");
+        // fullPath = Path.Combine(Application.streamingAssetsPath, "Charts", "Level_3_Custom.txt");
         // chartMaker = new StreamWriter(fullPath);
 
         // Initialize the dictionary

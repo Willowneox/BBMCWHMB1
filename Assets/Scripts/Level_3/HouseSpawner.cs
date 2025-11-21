@@ -39,7 +39,7 @@ public class HouseSpawner : MonoBehaviour
     void Start()
     {
         // Get the path of the level 3 chart file
-        string fullPath = Path.Combine(Application.dataPath, "Charts", "Level_3.txt");
+        string fullPath = Path.Combine(Application.streamingAssetsPath, "Charts", "Level_3.txt");
 
         List<(float, Direction)> beatList = DeliveryFoodGameChart.FileToBeatChart(fullPath);
 
