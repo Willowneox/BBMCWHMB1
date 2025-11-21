@@ -27,6 +27,7 @@ public class Conductor : MonoBehaviour
         double leadInSeconds  = leadInBeats * quarterNote;
         songStartTimeDSP = (float) (AudioSettings.dspTime + leadInSeconds); // Schedule the song to start in 1 second
         song.PlayScheduled(songStartTimeDSP);
+        AudioListener.pause = false;
     }
 
     // Update is called once per frame
