@@ -111,10 +111,10 @@ MonoBehaviour:
   hitPosition: {x: 0, y: 0, z: 0}
   wasHit: 0
   wasMissed: 0
-  rawSprite: {fileID: 952422054987985344, guid: cf8f1896ced4dcd42801bcd3a92aa805, type: 3}
-  perfectSprite: {fileID: 4998140229588340450, guid: c5d80f1bb9bc66a49b9a7da76caa62f1, type: 3}
-  goodSprite: {fileID: 4998140229588340450, guid: c5d80f1bb9bc66a49b9a7da76caa62f1, type: 3}
-  overcookedSprite: {fileID: 4339505676710800326, guid: 118ce2bf8ac6b804d8efc9c0fc06a34e, type: 3}
+  rawSprite: {fileID: 7317370116515622864, guid: 6f647efb1b9b3fe49bb64c612f7383e0, type: 3}
+  perfectSprite: {fileID: -2594216265404898505, guid: 2b00c6407ec6bbd45bd20542dbfc1db1, type: 3}
+  goodSprite: {fileID: 8784627313342524066, guid: c41b3de432453034ba587fdc2c709e72, type: 3}
+  overcookedSprite: {fileID: 8586897559717008042, guid: 52127b02137840f488b957503e404dd3, type: 3}
   slideSpeed: 5
   holdLengthBeats: 0
   snapDuration: 0.1
