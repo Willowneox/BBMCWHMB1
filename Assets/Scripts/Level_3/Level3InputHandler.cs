@@ -143,5 +143,8 @@ public class Level3InputHandler : MonoBehaviour
 
     void OnDestroy() {
         // chartMaker.Close();
+        // Convert the scoreTally into a ranking.
+        Rank rank = Judgements.CalculateScore(scoreTally);
+        GlobalState.ranking = rank;
     }
 }

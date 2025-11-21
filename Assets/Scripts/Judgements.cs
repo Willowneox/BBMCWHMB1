@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -10,6 +11,17 @@ public enum Judgement
     Miss,
     Good,
     Perfect
+}
+
+/// <summary>
+/// The rank you get at the end of the level.
+/// </summary>
+public enum Rank
+{
+    A,
+    B,
+    C,
+    D,
 }
     
 public class Judgements
@@ -42,12 +54,30 @@ public class Judgements
     }
     
     /// <summary>
-    /// Calculates the score with the given tally
+    /// Calculates the score with the given tally.
     /// </summary>
     /// <param name="tally"></param>
     /// <returns></returns>
-    public static double CalculateScore(Dictionary<Judgement, int> tally)
+    public static Rank CalculateScore(Dictionary<Judgement, int> tally)
     {
-        return (-0.05 * tally[Judgement.Miss] + 0.75 * tally[Judgement.Good] + 1 * tally[Judgement.Perfect]) / (tally[Judgement.Miss] + tally[Judgement.Good] + tally[Judgement.Perfect]);
+        int misses = tally[Judgement.Miss];
+        int goods = tally[Judgement.Good];
+        int perfects = tally[Judgement.Perfect];
+
+        double score = (-0.05 * misses + 0.75 * goods + 1 * perfects) / (misses + goods + perfects);
+        Debug.Log("Score for this level: " + score);
+        if (score > 0.9)
+        {
+            return Rank.A;
+        }
+        if (score > 0.8)
+        {
+            return Rank.B;
+        }
+        if (score > 0.75)
+        {
+            return Rank.C;
+        }
+        return Rank.D;
     }
 }
