@@ -10,7 +10,6 @@ public class UIManager : MonoBehaviour
 
     public void OnRestartPress()
     {
-        AudioListener.pause = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
