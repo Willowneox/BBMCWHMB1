@@ -8,6 +8,24 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _inGameText;
     [SerializeField] private GameObject _pauseMenu;
 
+    private bool paused = false;
+
+    void Update()
+    {
+        if (SceneManager.GetActiveScene().name != "main menu" && Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (paused)
+            {
+                OnContinuePress();
+                paused = false;
+            } else
+            {
+                OnPausePress();
+                paused = true;
+            }
+        }
+    }
+
     public void OnRestartPress()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
