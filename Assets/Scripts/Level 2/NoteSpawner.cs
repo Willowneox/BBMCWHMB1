@@ -41,6 +41,7 @@ public class NoteSpawner : MonoBehaviour
         //Assigning beats
         note.pressBeat = data.pressBeat;
         note.releaseBeat = data.releaseBeat;
+        note.holdLengthBeats = data.releaseBeat - data.pressBeat;
 
         //Spawn note 4 beats before it needs to be hit
         note.spawnBeat = data.pressBeat - 4f; 

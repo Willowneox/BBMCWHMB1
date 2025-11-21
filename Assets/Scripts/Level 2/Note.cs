@@ -7,6 +7,9 @@ public class Note : MonoBehaviour
     public float hitBeat; //This is when the note should be hit (tap notes only)
     public float pressBeat; //This is when the note should be hit
     public float releaseBeat; //This is when the note should be released
+    
+
+    //Dictates note path
     public Vector3 spawnPosition;
     public Vector3 hitPosition;
 
@@ -30,6 +33,9 @@ public class Note : MonoBehaviour
     private bool slidingOff = false;
     public float slideSpeed = 5f;
 
+    //Note scaling
+    public float holdLengthBeats; //Length of hold in beats
+    private Vector3 baseScale;
 
     [SerializeField] private float snapDuration = 0.1f;
     [SerializeField] private AnimationCurve snapEase = AnimationCurve.EaseInOut(0, 0, 1, 1);
@@ -38,6 +44,8 @@ public class Note : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = rawSprite;
+        baseScale = transform.localScale;
+     
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -47,6 +55,8 @@ public class Note : MonoBehaviour
 
         stepLength = (pressBeat - spawnBeat) / totalSteps;
         transform.position = spawnPosition;
+
+        transform.localScale = baseScale * holdLengthBeats;
     }
 
     // Update is called once per frame
@@ -80,7 +90,7 @@ public class Note : MonoBehaviour
         }
 
         //Misses if note is ignored by player
-        if (currentBeat > pressBeat + 0.25f)
+        if (!wasHit && !wasMissed && currentBeat > releaseBeat + 0.25f)
         {
             Miss();
         }
@@ -111,8 +121,13 @@ public class Note : MonoBehaviour
 
     public void Miss()
     {
+        if (wasHit) return; //Just in case if the note was already hit, it can't trigger a miss.
+
         if (wasHit || wasMissed) return;
         wasMissed = true;
+
+        ApplyJudgement(Judgement.Miss);
+        SlideOffScreen();
 
     }
 
@@ -136,6 +151,7 @@ public class Note : MonoBehaviour
 
     public void SlideOffScreen()
     {
+        if(slidingOff) return; //Prevent multiple calls
         slidingOff = true;
 
         //Debug.Log("Starting slide off");
