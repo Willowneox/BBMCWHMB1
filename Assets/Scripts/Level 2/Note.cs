@@ -26,6 +26,7 @@ public class Note : MonoBehaviour
     //Sprites
     public Sprite rawSprite;
     public Sprite perfectSprite;
+    public Sprite goodSprite;
     public Sprite overcookedSprite;
     private SpriteRenderer sr;
 
@@ -136,8 +137,10 @@ public class Note : MonoBehaviour
         switch (result)
         {
             case Judgement.Perfect:
-            case Judgement.Good:
                 sr.sprite = perfectSprite;
+                break;
+            case Judgement.Good:
+                sr.sprite = goodSprite;
                 break;
 
             case Judgement.Miss:
