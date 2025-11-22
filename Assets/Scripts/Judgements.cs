@@ -16,9 +16,9 @@ public class Judgements
 {
     // Timings were decided by Kai.
     /// Time required for a good in milliseconds
-    public const int goodTime = 80;
+    public const int goodTime = 100;
     /// Time required for a perfect in milliseconds
-    public const int perfectTime = 40;
+    public const int perfectTime = 50;
 
     /// <summary>
     /// Gets the rating for a hit time.
