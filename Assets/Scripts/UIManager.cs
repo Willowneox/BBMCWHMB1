@@ -52,6 +52,12 @@ public class UIManager : MonoBehaviour
         AudioListener.pause = false;
     }
 
+    public void OnLevelTwoPress()
+    {
+        SceneManager.LoadScene("Level2");
+        AudioListener.pause = false;
+    }
+
     public void OnLevelThreePress()
     {
         SceneManager.LoadScene("Delivery_Level");
