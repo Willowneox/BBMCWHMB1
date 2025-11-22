@@ -13,9 +13,9 @@ public class Conductor : MonoBehaviour
     public UIManager uiManager;
     
     /// <summary>
-    /// The scene to switch to when the song ends.
+    /// The scene to switch to when the song ends. This is the filename of the scene without the file extension.
     /// </summary>
-    public SceneAsset nextScene;
+    public string nextScene;
 
     public float bpm;
     public float offset = 0;
@@ -52,11 +52,11 @@ public class Conductor : MonoBehaviour
             songPosition = (float)(AudioSettings.dspTime -  songStartTimeDSP) * song.pitch - offset;
             songPositionInBeats = songPosition / quarterNote;
 
-            if (!song.isPlaying && !uiManager.paused && nextScene != null)
+            if (!song.isPlaying && uiManager != null && !uiManager.paused && nextScene != null)
             {
                 // If the song is not playing and the game is not paused,
                 // the song finished, so we need to switch to the next scene.
-                SceneManager.LoadScene(nextScene.name);
+                SceneManager.LoadScene(nextScene);
             }
         }
     }
