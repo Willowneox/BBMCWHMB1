@@ -25,7 +25,7 @@ public class HouseSpawner : MonoBehaviour
     /// <summary>
     /// The X position of right houses.
     /// </summary>
-    public const float houseRightXPos = 4.75f;
+    public const float houseRightXPos = 4.5f;
     /// <summary>
     /// A queue of house times and whether they go on the left or right side of the level.
     /// </summary>
