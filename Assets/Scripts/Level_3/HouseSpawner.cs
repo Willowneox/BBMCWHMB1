@@ -15,10 +15,6 @@ public class HouseSpawner : MonoBehaviour
     /// </summary>
     public ImageScroller imageScroller;
     /// <summary>
-    /// The audio component connected to this game object.
-    /// </summary>
-    public AudioSource doorSound;
-    /// <summary>
     /// The conductor used to get the song position.
     /// </summary>
     public Conductor conductor;
@@ -57,7 +53,7 @@ public class HouseSpawner : MonoBehaviour
             // We use peek here because we may not want to take it out of the queue yet.
             (float nextBeatTime, _) = noteQueue.Peek();
             // Check if the note time is close enough for the house to spawn.
-            if (conductor.songPositionInBeats > nextBeatTime - 2f)
+            if (conductor.songPositionInBeats > nextBeatTime - 3f)
             {
                 Direction nextDirection;
                 // Now we take it out of the queue.
@@ -69,28 +65,21 @@ public class HouseSpawner : MonoBehaviour
                 {
                     houseX = houseLeftXPos;
                     house.spriteRenderer.flipX = true;
-                    // Make the door sound play on the left at a regular pitch.
-                    doorSound.panStereo = -1f;
-                    doorSound.pitch = 2f;
                 }
                 else
                 {
                     houseX = houseRightXPos;
-                    // Make the door sound play on the right at a high pitch.
-                    doorSound.panStereo = 1f;
-                    doorSound.pitch = 3f;
                 }
                 house.transform.position = new Vector3(houseX, this.transform.position.y, 0f);
 
-                // Slightly randomize the house sizes.
-                float scale = UnityEngine.Random.Range(0.5f, 0.75f);
+                // Make the houses a bit smaller so they don't overlap.
+                float scale = 0.5f;
                 house.transform.localScale = new Vector3(scale, scale, scale);
 
                 house.noteTime = nextBeatTime;
+                house.direction = nextDirection;
                 house.conductor = conductor;
                 house.distanceScale = imageScroller.speed;
-                // Play the door opening sound.
-                doorSound.Play();
             }
         }
     }

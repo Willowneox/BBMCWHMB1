@@ -56,14 +56,14 @@ public class Level3InputHandler : MonoBehaviour
     void Update()
     {
         //Checks key hit and records the song position.
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             float hitTime = conductor.songPosition;
             Debug.Log("Hit at beat: " + conductor.songPositionInBeats + ". Approximately " + (int) Math.Round(conductor.songPositionInBeats));
             // chartMaker.WriteLine((int) Math.Round(hitTime / conductor.quarterNote) + " L");
             CheckHit(hitTime, Direction.Left);
         }
-        else if (Input.GetKeyDown(KeyCode.X))
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             float hitTime = conductor.songPosition;
             Debug.Log("Hit at beat:" + conductor.songPositionInBeats);

@@ -17,11 +17,9 @@ public class UIManager : MonoBehaviour
             if (paused)
             {
                 OnContinuePress();
-                paused = false;
             } else
             {
                 OnPausePress();
-                paused = true;
             }
         }
     }
@@ -34,6 +32,7 @@ public class UIManager : MonoBehaviour
     public void OnPausePress()
     {
         AudioListener.pause = true;
+        paused = true;
 
         _inGameText.SetActive(false);
         _pauseMenu.SetActive(true);
@@ -42,6 +41,7 @@ public class UIManager : MonoBehaviour
     public void OnHomePress()
     {
         SceneManager.LoadScene("main menu");
+        paused = false;
     }
 
     public void OnContinuePress()
@@ -50,17 +50,20 @@ public class UIManager : MonoBehaviour
         _pauseMenu.SetActive(false);
 
         AudioListener.pause = false;
+        paused = false;
     }
 
     public void OnLevelTwoPress()
     {
         SceneManager.LoadScene("Level2");
         AudioListener.pause = false;
+        paused = false;
     }
 
     public void OnLevelThreePress()
     {
         SceneManager.LoadScene("Delivery_Level");
         AudioListener.pause = false;
+        paused = false;
     }
 }
