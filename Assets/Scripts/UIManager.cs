@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _inGameText;
     [SerializeField] private GameObject _pauseMenu;
 
-    private bool paused = false;
+    public bool paused = false;
 
     void Update()
     {
@@ -49,6 +49,12 @@ public class UIManager : MonoBehaviour
         _inGameText.SetActive(true);
         _pauseMenu.SetActive(false);
 
+        AudioListener.pause = false;
+    }
+
+    public void OnLevelTwoPress()
+    {
+        SceneManager.LoadScene("Level2");
         AudioListener.pause = false;
     }
 
