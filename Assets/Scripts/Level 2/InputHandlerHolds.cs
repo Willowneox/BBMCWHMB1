@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class InputHandlerHolds : MonoBehaviour
 {
@@ -12,6 +13,13 @@ public class InputHandlerHolds : MonoBehaviour
 
     private bool isHeld = false;
     private HoldNoteData activeNote = null;
+
+    public InstructionCard instructionCard;
+
+    void Start()
+    {
+        StartCoroutine(ShowInstructionRoutine());
+    }
 
     // Update is called once per frame
     void Update()
@@ -86,4 +94,17 @@ public class InputHandlerHolds : MonoBehaviour
         activeNote = null;
     }
 
+    IEnumerator ShowInstructionRoutine()
+    {
+
+
+        instructionCard.ShowMessage("Hold for 1 beat!");
+        yield return new WaitForSeconds(21.0f);
+
+        instructionCard.ShowMessage("Bigger burgers cook for 2 beats!");
+        yield return new WaitForSeconds(17.0f);
+
+        instructionCard.ShowMessage("Smaller burgers cook for half a beat!");
+        yield return new WaitForSeconds(3.0f);
+    }
 }
