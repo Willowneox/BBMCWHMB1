@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class SpatulaController : MonoBehaviour
 {
-    public float pressedY = -2f;
-    public float releasedY = 0;
+    public float pressedY = -4f;
+    public float releasedY = 2f;
     public float movespeed = 10f;
 
     private Vector3 targetPos;

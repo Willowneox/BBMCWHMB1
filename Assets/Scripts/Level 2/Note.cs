@@ -32,7 +32,7 @@ public class Note : MonoBehaviour
 
     //Removing the note from the screen
     private bool slidingOff = false;
-    public float slideSpeed = 5f;
+    public float slideSpeed = 10f;
 
     //Note scaling
     public float holdLengthBeats; //Length of hold in beats

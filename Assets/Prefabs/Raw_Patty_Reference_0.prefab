@@ -115,7 +115,7 @@ MonoBehaviour:
   perfectSprite: {fileID: -2594216265404898505, guid: 2b00c6407ec6bbd45bd20542dbfc1db1, type: 3}
   goodSprite: {fileID: 8784627313342524066, guid: c41b3de432453034ba587fdc2c709e72, type: 3}
   overcookedSprite: {fileID: 8586897559717008042, guid: 52127b02137840f488b957503e404dd3, type: 3}
-  slideSpeed: 5
+  slideSpeed: 15
   holdLengthBeats: 0
   snapDuration: 0.1
   snapEase:

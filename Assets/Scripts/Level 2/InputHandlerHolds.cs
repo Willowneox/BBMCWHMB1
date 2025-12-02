@@ -5,6 +5,8 @@ public class InputHandlerHolds : MonoBehaviour
 {
     public Conductor conductor;
 
+    public AssemblyJudgement assemblyJudgement;
+
     //This should be the same list in NoteSpawner
     public List<HoldNoteData> notes;
 
@@ -54,8 +56,9 @@ public class InputHandlerHolds : MonoBehaviour
 
         Judgement result = Judgements.GetRating(offsetMs);
         Debug.Log($"Press: {result} ({offsetMs:F1} ms)");
+        assemblyJudgement.ShowJudgement(result.ToString(), (float)offsetMs);
 
-        if(result != Judgement.Miss)
+        if (result != Judgement.Miss)
         {
             isHeld = true;
             activeNote = closest;
@@ -73,6 +76,7 @@ public class InputHandlerHolds : MonoBehaviour
         Judgement result = Judgements.GetRating(offsetMs);
 
         Debug.Log($"Release: {result} ({offsetMs:F1} ms)");
+        assemblyJudgement.ShowJudgement(result.ToString(), (float)offsetMs);
 
         //Changes the burger sprite and then has it slide off the screen and delete itself
         activeNote.noteObject.ApplyJudgement(result);
