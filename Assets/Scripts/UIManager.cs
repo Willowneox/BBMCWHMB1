@@ -55,7 +55,7 @@ public class UIManager : MonoBehaviour
 
     public void OnLevelTwoPress()
     {
-        SceneManager.LoadScene("Level2");
+        SceneManager.LoadScene("Assembly_Level");
         AudioListener.pause = false;
         paused = false;
     }
