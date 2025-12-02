@@ -767,6 +767,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Conductor
   song: {fileID: 1808707065}
+  uiManager: {fileID: 0}
+  nextScene: {fileID: 0}
   bpm: 140
   offset: 0
   quarterNote: 0
