@@ -786,7 +786,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL 1
+  m_text: coming soon
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: deb9b851c6ad1c94da9c29e2656f2263, type: 2}
   m_sharedMaterial: {fileID: -2251435534083486409, guid: deb9b851c6ad1c94da9c29e2656f2263, type: 2}
@@ -1180,7 +1180,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1238413361}
+  m_TargetGraphic: {fileID: 709521910}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -1389,6 +1389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _inGameText: {fileID: 0}
   _pauseMenu: {fileID: 0}
+  paused: 0
 --- !u!4 &1331687639
 Transform:
   m_ObjectHideFlags: 0
